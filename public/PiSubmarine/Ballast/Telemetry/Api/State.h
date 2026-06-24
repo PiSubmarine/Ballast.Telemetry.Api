@@ -2,13 +2,13 @@
 
 #include <optional>
 
-#include "PiSubmarine/NormalizedFraction.h"
+#include "PiSubmarine/Ballast/BallastFillFraction.h"
 
 namespace PiSubmarine::Ballast::Telemetry::Api
 {
     struct State
     {
-        std::optional<NormalizedFraction> Position;
+        std::optional<BallastFillFraction> Position;
 
         [[nodiscard]] constexpr bool operator==(const State& other) const noexcept
         {
@@ -17,8 +17,8 @@ namespace PiSubmarine::Ballast::Telemetry::Api
 
     private:
         [[nodiscard]] static constexpr bool OptionalPositionEqual(
-            const std::optional<NormalizedFraction>& left,
-            const std::optional<NormalizedFraction>& right) noexcept
+            const std::optional<BallastFillFraction>& left,
+            const std::optional<BallastFillFraction>& right) noexcept
         {
             if (left.has_value() != right.has_value())
             {

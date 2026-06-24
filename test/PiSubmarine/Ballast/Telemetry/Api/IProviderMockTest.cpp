@@ -1,13 +1,14 @@
 #include <gtest/gtest.h>
 
 #include "PiSubmarine/Ballast/Telemetry/Api/IProviderMock.h"
+#include "PiSubmarine/NormalizedFraction.h"
 
 namespace PiSubmarine::Ballast::Telemetry::Api
 {
     TEST(IProviderMockTest, GetStateReturnsConfiguredState)
     {
         IProviderMock providerMock;
-        const State expectedState{.Position = NormalizedFraction(0.5)};
+        const State expectedState{.Position = BallastFillFraction{NormalizedFraction{0.5}}};
 
         EXPECT_CALL(providerMock, GetState())
             .WillOnce(testing::Return(Error::Api::Result<State>(expectedState)));
